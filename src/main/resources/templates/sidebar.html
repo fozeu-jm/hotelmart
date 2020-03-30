@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6" th:fragment="sidebar(big,small)">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item" th:classappend="${big == 'dashboard'} ? selected : null"> 
+                            <a class="sidebar-link sidebar-link" th:href="@{/web/home}" aria-expanded="false">
+                                <i data-feather="home" class="feather-icon"></i>
+                                <span class="hide-menu">Dashboard</span></a>
+                        </li>
+
+                        <li class="list-divider"></li>
+                        <li class="nav-small-cap">
+                            <span class="hide-menu">Management</span>
+                        </li>
+                        <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_ROOMS')" class="sidebar-item" th:classappend="${big == 'customer'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'customer'} ? active : null">
+                                <i data-feather="user-check" class="feather-icon"></i>
+                                <span class="hide-menu">Customers </span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'customer'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/customers/}" class="sidebar-link" th:classappend="${small == 'customers'} ? active : null">
+                                        <span class="hide-menu">Customer Records</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/customers/add/}" class="sidebar-link" th:classappend="${small == 'addcustomer'} ? active : null">
+                                        <span class="hide-menu">Add Customer</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+                        <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_ROOMS')" class="sidebar-item" th:classappend="${big == 'rooms'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'rooms'} ? active : null">
+                                <i data-feather="inbox" class="feather-icon"></i>
+                                <span class="hide-menu">Rooms</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'rooms'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/rooms/}" class="sidebar-link" th:classappend="${small == 'roomlist'} ? active : null">
+                                        <span class="hide-menu">Room Register</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/rooms/add}" class="sidebar-link" th:classappend="${small == 'addroom'} ? active : null">
+                                        <span class="hide-menu">Add room</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+                        <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_RESERVATIONS')" class="sidebar-item" th:classappend="${big == 'reservations'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'reservations'} ? active : null">
+                                <i data-feather="bookmark" class="feather-icon"></i>
+                                <span class="hide-menu">Reservations</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'reservations'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/reservations/}" class="sidebar-link" th:classappend="${small == 'reservlist'} ? active : null">
+                                        <span class="hide-menu">Reservation Register</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/customers/add}" class="sidebar-link" th:classappend="${small == 'addreserv'} ? active : null">
+                                        <span class="hide-menu">Book Registration</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+                        <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_ROOM_TYPES')" class="sidebar-item" th:classappend="${big == 'roomtype'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'roomtype'} ? active : null">
+                                <i data-feather="archive" class="feather-icon"></i>
+                                <span class="hide-menu">Room Types</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'roomtype'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/types/}" class="sidebar-link" th:classappend="${small == 'typelist'} ? active : null">
+                                        <span class="hide-menu">Room type list</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/types/add}" class="sidebar-link" th:classappend="${small == 'addtype'} ? active : null">
+                                        <span class="hide-menu">Add type</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  				<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SERVICES')" class="sidebar-item" th:classappend="${big == 'services'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'services'} ? active : null">
+                                <i data-feather="wifi" class="feather-icon"></i>
+                                <span class="hide-menu">Services</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'services'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/services/}" class="sidebar-link" th:classappend="${small == 'servicelist'} ? active : null">
+                                        <span class="hide-menu">Service Register</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/services/add}" class="sidebar-link" th:classappend="${small == 'addservice'} ? active : null">
+                                        <span class="hide-menu">Add Service</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+					<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_CHARGES')" class="sidebar-item" th:classappend="${big == 'charges'} ? selected : null"> 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'charges'} ? active : null">
+                                <i data-feather="gift" class="feather-icon"></i>
+                                <span class="hide-menu">Charges</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'charges'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/reservations/}" class="sidebar-link" th:classappend="${small == 'chargelist'} ? active : null">
+                                        <span class="hide-menu">Charge List</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/reservations/}" class="sidebar-link" th:classappend="${small == 'addcharge'} ? active : null">
+                                        <span class="hide-menu">Add Charges</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+					<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PAYMENTS')" class="sidebar-item" th:classappend="${big == 'payments'} ? selected : null" > 
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'payments'} ? active : null">
+                                <i data-feather="credit-card" class="feather-icon"></i>
+                                <span class="hide-menu">Payments</span>
+                            </a>
+
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'payments'} ? in : null">
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/reservations/}" class="sidebar-link" th:classappend="${small == 'paymentlist'} ? active : null">
+                                        <span class="hide-menu">Payment Details</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a th:href="@{/web/reservations/}" class="sidebar-link" th:classappend="${small == 'addpayment'} ? active : null">
+                                        <span class="hide-menu">Add Payment</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+					
+						<li sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-item" th:classappend="${big == 'users'} ? selected : null" > 
+	                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false" th:classappend="${big == 'users'} ? active : null">
+	                                <i data-feather="users" class="feather-icon"></i>
+	                                <span class="hide-menu">Users</span>
+	                            </a>
+	
+	                            <ul aria-expanded="false" class="collapse  first-level base-level-line " th:classappend="${big == 'users'} ? in : null">
+	                                <li class="sidebar-item">
+	                                    <a th:href="@{/web/users/}" class="sidebar-link" th:classappend="${small == 'userlist'} ? active : null">
+	                                        <span class="hide-menu">User Record</span>
+	                                    </a>
+	                                </li>
+	                                <li class="sidebar-item">
+	                                    <a th:href="@{/web/users/add}" class="sidebar-link" th:classappend="${small == 'adduser'} ? active : null">
+	                                        <span class="hide-menu">Add User</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+                      
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+    </body>
+</html>

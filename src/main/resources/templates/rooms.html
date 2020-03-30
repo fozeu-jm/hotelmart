@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>Room Register list – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+	<!--preloader fragment-->
+	<div th:replace="footer.html :: preloader-frag"></div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-theme="light" data-layout="vertical"
+		data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed"
+		data-boxed-layout="full">
+
+		<!-- header inclusion -->
+		<div th:replace="header.html :: header-frag"></div>
+
+
+		<!-- sidebar inclusion -->
+		<div th:replace="sidebar.html :: sidebar('rooms','roomlist')"></div>
+
+
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb" th:fragment="breadcrumb-frag">
+				<div class="row">
+					<div class="col-12 align-self-center">
+						<h3 class="page-title text-dark font-weight-medium mb-1">Room register</h3>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item"><a th:href="@{/web/home}">Dashboard</a>
+									</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!-- 					<div class="col-5 align-self-center"> -->
+					<!-- 						<div class="customize-input float-right"></div> -->
+					<!-- 					</div> -->
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+
+								<div class="table-responsive">
+									<table id="datatable-responsive2"
+										class="table table-striped table-bordered dt-responsive no-wrap resp-table">
+										<col style="width: 10%">
+										<col style="width: 10%">
+										<col style="width: 10%">
+										<col style="width: 10%">
+										<col style="width: 20%">
+										<col style="width: 10%">
+										<col style="width: 20%">
+										<col style="width: 10%">
+										<thead>
+											<tr>
+												<th>Room No</th>
+												<th>Floor</th>
+												<th>Capacity</th>
+												<th>Surface Area</th>
+												<th>Type</th>
+												<th>Fee/night (FCFA)</th>
+												<th>Status</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="room : ${rooms}">
+												<td data-label="Room No" th:utext="${room.roomNo}" />
+												<td data-label="Floor" th:utext="${room.floor}" />
+												<td data-label="Capacity" th:utext="${room.capacity}" />
+												<td data-label="Surface Area" th:utext="${room.surfaceArea}" />
+												<td data-label="Type" th:utext="${room.type.label}" />
+												<td data-label="Fee/night"
+													th:text="${#numbers.formatDecimal(room.type.rate, 0, 'COMMA', 2, 'POINT')}" />
+												<td style="text-align: center;" data-label="Status">
+													<span class="btn btn-success" th:if="${room.status=='FREE'}" th:utext="${room.status}" ></span>
+													
+													<span class="btn btn-danger" th:if="${room.status=='BUSY'}" th:utext="${room.status}"></span>
+												</td>
+												
+												<td data-label="Actions"><a class="btn btn-primary"
+													th:href="@{/web/rooms/update(id=${room.id})}">Update</a> &nbsp
+													<a class="btn btn-primary" th:href="@{/web/rooms/remove(id=${room.id})}"
+													onclick="if(!(confirm('Are you sure you want to delete entry?'))) return false">Delete</a>
+												</td>
+											</tr>
+										<tfoot>
+											<tr>
+												<th>Room No</th>
+												<th>Floor</th>
+												<th>Capacity</th>
+												<th>Surface Area</th>
+												<th>Type</th>
+												<th>Fee/night (FCFA)</th>
+												<th>Status</th>
+												<th>Actions</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+
+			<!--Footer fragment inclusion-->
+			<div th:replace="footer.html :: footer-frag"></div>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+
+	<th:block th:insert="footer.html :: body/script"></th:block>
+</body>
+
+</html>

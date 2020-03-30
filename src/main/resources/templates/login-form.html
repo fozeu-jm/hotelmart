@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from www.adminmart.com/src/html/authentication-login1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Feb 2020 06:38:26 GMT -->
+<head>
+   <!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>Log In – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+            th:style="'background:url(' + @{/assets/images/big/auth-bg.jpg} + ') no-repeat center center;'">
+            <div class="auth-box row">
+                <div class="col-lg-7 col-md-5 modal-bg-img" th:style="'background-image: url('+@{/assets/images/big/3.jpg}+');'">
+                </div>
+                <div class="col-lg-5 col-md-7 bg-white">
+                    <div class="p-3">
+                        <div class="text-center">
+                            <img th:src="@{/assets/images/big/icon.png}" alt="wrapkit">
+                        </div>
+                        <h2 class="mt-3 black text-center">Account Login</h2>
+                        <p class="text-center black">Enter your username and password to access admin panel.</p>
+                        <form th:action="@{/web/authenticate}" method="POST" class="mt-4">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="uname">Username</label>
+                                        <input name="username" class="form-control" id="uname" type="text"
+                                            placeholder="enter your username">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="pwd">Password</label>
+                                        <input name="password" class="form-control" id="pwd" type="password"
+                                            placeholder="enter your password">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                                </div>
+                                
+                                <div style="visibility: hidden" class="col-lg-12 text-center mt-5 text-danger" th:unless="${param.error} OR ${param.logout}">
+                                    Invalid username and password.
+                                </div>
+                                
+                                <div class="col-lg-12 text-center mt-5 text-danger" th:if="${param.error}">
+                                    Invalid username and password.
+                                </div>
+                                <div class="col-lg-12 text-center mt-5 text-danger" th:if="${param.logout}">
+                                   	You have been logged out.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <th:block th:insert="footer.html :: body/script"></th:block>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $(".preloader ").fadeOut();
+    </script>
+</body>
+
+
+<!-- Mirrored from www.adminmart.com/src/html/authentication-login1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Feb 2020 06:38:27 GMT -->
+</html>

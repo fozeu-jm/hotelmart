@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>2.Reservation Details – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+	<!--preloader fragment-->
+	<div th:replace="footer.html :: preloader-frag"></div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-theme="light" data-layout="vertical"
+		data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed"
+		data-boxed-layout="full">
+
+		<!-- header inclusion -->
+		<div th:replace="header.html :: header-frag"></div>
+
+
+		<!-- sidebar inclusion -->
+		<div th:replace="sidebar.html :: sidebar('reservations','addreserv')"></div>
+
+
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb" th:fragment="breadcrumb-frag">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h3 class="page-title text-dark font-weight-medium mb-1">Book
+							Registration</h3>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item"><a th:href="@{/web/home}">Dashboard</a>
+									</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="col-5 align-self-center">
+						<div class="customize-input float-right"></div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-crumb">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-user-follow"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">1.
+											Register Customer</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-book-open"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">2.
+											Reservation Details</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="crumb-icon icon-wallet"></i>
+										</div>
+										<p class="text-center crumb-label">3. Rate Fee</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="crumb-icon icon-credit-card"></i>
+										</div>
+										<p class="text-center crumb-label">4. Confirmation</p>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<th:block th:if="${form.id != null}">
+									<a th:href="@{/web/reservations/checkin(id=${form.id})}" class="btn btn-primary mb-2">CHECK_IN</a>
+									<a th:href="@{/web/reservations/checkout(id=${form.id})}" class="btn btn-primary mb-2">CHECK_OUT</a>
+								</th:block>
+								<form class="mt-3 form-horizontal" action="#"
+									th:action="@{/web/reservations/details}" th:object="${form}"
+									method="POST">
+									<input type="hidden" th:field="*{id}" /> <input type="hidden"
+										th:field="*{customer}" />
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Customer*:</label>
+										<div class="col-sm-10">
+											<input readonly="readonly" type="text" class="form-control"
+												th:value="${customer.firstName + ' ' + customer.lastName}">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Reference*:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" th:field="*{code}"
+												th:classappend="${form.errors.containsKey('code')} ? is-invalid : null"
+												placeholder="Reservation reference code">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('code')}"
+												th:text="${form.errors.get('code')}"></div>
+
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Arrival:</label>
+										<div class="col-sm-10">
+											<input readonly type="text"
+												class="form-control form_datetime" th:field="*{farrival}"
+												th:classappend="${form.errors.containsKey('arrival')} ? is-invalid : null"
+												placeholder="Arrival Date">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('arrival')}"
+												th:text="${form.errors.get('arrival')}"></div>
+
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Depature
+											Date*:</label>
+										<div class="col-sm-10">
+											<input readonly type="text"
+												class="form-control form_datetime" th:field="*{fdeparture}"
+												th:classappend="${form.errors.containsKey('departure')} ? is-invalid : null"
+												placeholder="Depature Date">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('departure')}"
+												th:text="${form.errors.get('departure')}"></div>
+
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Deposit
+											(FCFA):</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control"
+												th:field="*{deposit}"
+												th:classappend="${form.errors.containsKey('deposit')} ? is-invalid : null"
+												placeholder="Guarantee deposit">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('deposit')}"
+												th:text="${form.errors.get('deposit')}"></div>
+
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Status
+											:</label>
+										<div class="col-sm-10">
+											<select th:field="*{status}" class="form-control select2"
+												th:classappend="${form.errors.containsKey('status')} ? is-invalid : null"
+												style="width: 100%; height: 550px;">
+												<th:block th:if="${form.status != null}">
+													<option th:value="${form.status}" th:text="${form.status}"></option>
+												</th:block>
+												<option th:each="stat : ${form.statuses}" th:value="${stat}"
+													th:text="${stat}"></option>
+											</select>
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('status')}"
+												th:text="${form.errors.get('status')}"></div>
+
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Rooms
+											:</label>
+										<div class="col-sm-10">
+											<select  name="rooms" class="form-control select2"
+												multiple="multiple"
+												th:classappend="${form.errors.containsKey('rooms')} ? is-invalid : null"
+												style="width: 100%; height: 550px;">
+												<th:block th:if="${srooms != null}">
+													<option th:each="room : ${srooms}" th:value="${room.id}"
+														th:text="${room.roomNo}" selected></option>
+												</th:block>
+												<option th:each="room : ${rooms}" th:value="${room.id}"
+													th:text="${room.roomNo}"></option>
+											</select>
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('rooms')}"
+												th:text="${form.errors.get('rooms')}"></div>
+
+										</div>
+									</div>
+									<button class="btn pd-btn btn-primary waves-effect waves-light"
+										type="submit">Save</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+
+			<!--Footer fragment inclusion-->
+			<div th:replace="footer.html :: footer-frag"></div>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+
+	<th:block th:insert="footer.html :: body/script"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>Add/Edit User – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+	<!--preloader fragment-->
+	<div th:replace="footer.html :: preloader-frag"></div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-theme="light" data-layout="vertical"
+		data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed"
+		data-boxed-layout="full">
+
+		<!-- header inclusion -->
+		<div th:replace="header.html :: header-frag"></div>
+
+
+		<!-- sidebar inclusion -->
+		<div th:replace="sidebar.html :: sidebar('users','adduser')"></div>
+
+
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb" th:fragment="breadcrumb-frag">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h3 class="page-title text-dark font-weight-medium mb-1">Add/Edit
+							User</h3>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item"><a th:href="@{/web/home}">Dashboard</a>
+									</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="col-5 align-self-center">
+						<div class="customize-input float-right"></div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-10 mx-auto">
+						<div class="card">
+							<div class="card-body">
+								<form class="mt-3 form-horizontal" action="#"
+									th:action="@{/web/users/add}" th:object="${form}"
+									method="POST">
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Username*:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control"
+												th:field="*{username}"
+												th:classappend="${form.errors.containsKey('username')} ? is-invalid : null"
+												placeholder="enter username">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('username')}"
+												th:text="${form.errors.get('username')}"></div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Privileges*:</label>
+										<div class="col-sm-10">
+											<select th:field="*{modules}" class="form-control select2"
+												multiple="multiple"
+												th:classappend="${form.errors.containsKey('modules')} ? is-invalid : null"
+												style="width: 100%; height: 550px;">
+												<th:block th:if="${sauth != null}">
+													<option th:each="room : ${srooms}" th:value="${room.id}"
+														th:text="${room.roomNo}" selected></option>
+												</th:block>
+												<option th:each="priv : ${form.allPrivileges}"
+													th:value="${priv.toString()}" th:text="${priv.toString()}"></option>
+											</select>
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('modules')}"
+												th:text="${form.errors.get('modules')}"></div>
+	
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Password:</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="pass"
+												th:field="*{password}"
+												th:classappend="${form.errors.containsKey('password')} ? is-invalid : null"
+												placeholder="enter password" >
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('password')}"
+												th:text="${form.errors.get('password')}"></div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Confirm password:</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id="conf"
+												th:field="*{confirm}"
+												th:classappend="${form.errors.containsKey('confirm')} ? is-invalid : null"
+												placeholder="confirm password" >
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('confirm')}"
+												th:text="${form.errors.get('confirm')}"></div>
+										</div>
+									</div>
+								
+									<button class="btn pd-btn btn-primary waves-effect waves-light"
+										type="submit">Save</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+
+			<!--Footer fragment inclusion-->
+			<div th:replace="footer.html :: footer-frag"></div>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+
+	<th:block th:insert="footer.html :: body/script"></th:block>
+</body>
+
+</html>

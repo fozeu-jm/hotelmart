@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>4.Confirmation – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+	<!--preloader fragment-->
+	<div th:replace="footer.html :: preloader-frag"></div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-theme="light" data-layout="vertical"
+		data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed"
+		data-boxed-layout="full">
+
+		<!-- header inclusion -->
+		<div th:replace="header.html :: header-frag"></div>
+
+
+		<!-- sidebar inclusion -->
+		<div th:replace="sidebar.html :: sidebar('reservations','addreserv')"></div>
+
+
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb" th:fragment="breadcrumb-frag">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h3 class="page-title text-dark font-weight-medium mb-1">Book
+							Registration</h3>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item"><a th:href="@{/web/home}">Dashboard</a>
+									</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="col-5 align-self-center">
+						<div class="customize-input float-right"></div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-crumb">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-user-follow"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">1.
+											Register Customer</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-book-open"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">2.
+											Reservation Details</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-wallet"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">3. Rate
+											Fee</p>
+									</div>
+									<div class="col-md-3">
+										<div class="text-center">
+											<i class="active-bread crumb-icon icon-credit-card"></i>
+										</div>
+										<p class="active-bread text-center crumb-label">4.
+											Confirmation</p>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<form class="mt-3 form-horizontal" action="#"
+									th:action="@{/web/reservations/save}" th:object="${form}"
+									method="POST">
+									<input type="hidden" th:field="*{id}" /> <input type="hidden"
+										th:field="*{customer}" />
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Reference:</label>
+										<div class="col-md-10">
+											<span th:text="${form.code}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Customer:</label>
+										<div class="col-md-10">
+											<span
+												th:text="${customer.firstName + ' ' + customer.lastName}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Arrival:</label>
+										<div class="col-md-10">
+											<span th:text="${form.farrival}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Departure:</label>
+										<div class="col-md-10">
+											<span th:text="${form.fdeparture}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Deposit:</label>
+										<div class="col-md-10">
+											<span
+												th:text="${#numbers.formatDecimal(form.deposit, 0, 'COMMA', 0, 'POINT')+' FCFA'}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Rate
+											Fee:</label>
+										<div class="col-md-10">
+											<span
+												th:text="${#numbers.formatDecimal(form.rate_fee, 0, 'COMMA', 0, 'POINT')+' FCFA'}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Status:</label>
+										<div class="col-md-10">
+											<span th:text="${form.status}"></span>
+										</div>
+									</div>
+									<div class=" form-group row">
+										<label class="col-md-2 text-dark col-form-label">Rooms:</label>
+										<div class="col-md-10">
+											<p th:each="room : ${rooms}" th:text="${room.roomNo + ' - '+room.type.label}"/>
+										</div>
+									</div>
+
+
+									<!-- ------------------------------------------------------------------------------------------------------------------ -->
+									<div class="d-none form-group row">
+										<label class="col-sm-2 text-dark col-form-label">Rate
+											Fee (FCFA)*:</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control"
+												th:field="*{rate_fee}"
+												th:classappend="${form.errors.containsKey('rate_fee')} ? is-invalid : null"
+												placeholder="Reservation reference rate_fee">
+											<div class="invalid-feedback"
+												th:if="${form.errors.containsKey('rate_fee')}"
+												th:text="${form.errors.get('rate_fee')}"></div>
+
+										</div>
+									</div>
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<input type="hidden" class="form-control" th:field="*{code}"
+												placeholder="Reservation reference code">
+										</div>
+									</div>
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<input readonly type="hidden"
+												class="form-control form_datetime" th:field="*{farrival}">
+										</div>
+									</div>
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<input readonly type="hidden"
+												class="form-control form_datetime" th:field="*{fdeparture}">
+										</div>
+									</div>
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<input type="hidden" class="form-control"
+												th:field="*{deposit}">
+										</div>
+									</div>
+
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<select th:field="*{status}" class="d-none form-control"
+												style="width: 100%; height: 550px;">
+												<option selected th:value="${form.status}"
+													th:text="${form.status}"></option>
+											</select>
+										</div>
+									</div>
+
+									<div class="d-none form-group row">
+										<div class="col-sm-10">
+											<select th:field="*{rooms}" class="d-none form-control"
+												multiple="multiple" style="width: 100%; height: 550px;">
+												<option th:each="room : ${form.rooms}" th:value="${room}"
+													th:text="${room}"></option>
+											</select>
+										</div>
+									</div>
+									<button class="btn pd-btn btn-primary waves-effect waves-light"
+										type="submit">Save</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+
+			<!--Footer fragment inclusion-->
+			<div th:replace="footer.html :: footer-frag"></div>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+
+	<th:block th:insert="footer.html :: body/script"></th:block>
+</body>
+
+</html>

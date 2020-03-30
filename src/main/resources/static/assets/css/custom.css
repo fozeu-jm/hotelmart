@@ -1,0 +1,569 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 févr. 2019, 15:47:47
+    Author     : Kaizer
+*/
+.black{
+	color: black;
+}
+.dt-button {
+	display: inline-block !important;
+	font-weight: 400;
+	color: #7c8798 !important;
+	text-align: center;
+	vertical-align: middle;
+	user-select: none !important;
+	background-color: transparent !important;
+	border: 1px solid transparent !important;
+	padding: 0.375rem 1.75rem !important;
+	font-size: 1rem !important;
+	line-height: 1.5 !important;
+	border-radius: 2px !important;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	color: #fff !important;
+	background-color: #5f76e8 !important;
+	background-image: linear-gradient(to bottom, #5f76e8 0%, #5f76e8 100%)
+		!important;
+	border-color: #5f76e8 !important;
+}
+
+.td-sm {
+	width: 10%;
+}
+
+.d-none {
+	display: none;
+}
+
+.crumb-icon {
+	font-size: 3.7rem;
+}
+
+@media screen and (max-width: 768px) {
+	.auth-wrapper .auth-box {
+		margin: 0;
+	}
+	.crumb-icon {
+		font-size: 2rem;
+	}
+	.crumb-label {
+		margin-top: 10px;
+		font-size: 14px;
+	}
+}
+
+.active-bread {
+	color: #5f76e8;
+}
+
+.crumb-label {
+	margin-top: 15px;
+	font-size: 18px;
+}
+
+.card-crumb {
+	padding: 20px;
+	border-bottom: 1px solid #ededed;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.select2-container .select2-selection--single {
+	height: 38px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered
+	{
+	line-height: 36px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow
+	{
+	top: 6px !important;
+}
+
+.pd-btn {
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+@media screen and (max-width: 968px) {
+	.resp-table {
+		border: 0;
+	}
+	.resp-table thead {
+		border: none;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	.resp-table tfoot {
+		border: none;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	.resp-table tr {
+		border-bottom: 3px solid #ddd;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-top: 1px solid #ddd;
+		display: block;
+		margin-bottom: .625em;
+	}
+	.resp-table td {
+		border-bottom: 1px solid #ddd;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+	}
+	.resp-table td::before {
+		content: attr(data-label);
+		float: left;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.resp-table td:last-child {
+		border-bottom: 0;
+	}
+}
+
+/******************************************INVOICE PAGE CSS****************************************************************/
+.kt-font-boldest {
+	font-weight: 700 !important;
+}
+
+.kt-font-xl {
+	font-size: 1.5rem !important;
+}
+
+.kt-font-danger {
+	color: #fd397a !important;
+}
+
+.kt-invoice-2 {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.kt-invoice-2 .kt-invoice__container {
+	width: 100%;
+	margin: 0;
+	padding: 0 30px;
+}
+
+.kt-invoice-2 .kt-invoice__head {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: 80px 0;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__container {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__brand {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__title {
+	font-weight: 700;
+	font-size: 2.7rem;
+	margin-right: 10px;
+	margin-top: 5px;
+	color: #595d6e;
+	vertical-align: top;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	margin-top: 5px;
+	text-align: right;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo img
+	{
+	text-align: right;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo .kt-invoice__desc
+	{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	text-align: right;
+	font-weight: 400;
+	padding: 1rem 0 1rem 0;
+	color: #74788d;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__items {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	width: 100%;
+	border-top: 1px solid #ebedf2;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__items .kt-invoice__item {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	color: #595d6e;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__items .kt-invoice__item:last-child
+	{
+	margin-right: 0;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__items .kt-invoice__item .kt-invoice__subtitle
+	{
+	font-weight: 500;
+	padding-bottom: .5rem;
+}
+
+.kt-invoice-2 .kt-invoice__head .kt-invoice__items .kt-invoice__item .kt-invoice__text
+	{
+	font-weight: 400;
+	color: #74788d;
+}
+
+.kt-invoice-2 .kt-invoice__body {
+	padding: 3rem 0;
+}
+
+.kt-invoice-2 .kt-invoice__body table {
+	background-color: transparent;
+}
+
+.kt-invoice-2 .kt-invoice__body table thead tr th {
+	background-color: transparent;
+	padding: 1rem 0 .5rem 0;
+	color: #74788d;
+	border-top: 0;
+	border-bottom: 1px solid #ebedf2;
+}
+
+.kt-invoice-2
+
+ 
+
+.kt-invoice__body
+
+ 
+
+table
+
+ 
+
+thead
+
+ 
+
+tr
+
+ 
+
+th
+
+
+:not
+
+ 
+
+(
+:first-child
+
+ 
+
+)
+{
+text-align
+
+
+:
+
+ 
+
+right
+
+
+;
+}
+.kt-invoice-2 .kt-invoice__body table tbody tr td {
+	background-color: transparent;
+	padding: 1rem 0 1rem 0;
+	border-top: none;
+	font-size: 1.1rem;
+	color: #595d6e;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.kt-invoice-2
+
+ 
+
+.kt-invoice__body
+
+ 
+
+table
+
+ 
+
+tbody
+
+ 
+
+tr
+
+ 
+
+td
+
+
+:not
+
+ 
+
+(
+:first-child
+
+ 
+
+)
+{
+text-align
+
+
+:
+
+ 
+
+right
+
+
+;
+}
+.kt-invoice-2 .kt-invoice__body table tbody tr:first-child td {
+	padding-top: 1.8rem;
+}
+
+.kt-invoice-2 .kt-invoice__footer {
+	padding: 3rem 0;
+	background-color: #f7f8fa;
+}
+
+.kt-invoice-2 .kt-invoice__footer .kt-invoice__container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.kt-invoice-2 .kt-invoice__footer .table {
+	background-color: transparent;
+	padding: 0;
+}
+
+.kt-invoice-2 .kt-invoice__footer .table th {
+	font-size: 1.1rem;
+	text-transform: capitalize;
+	font-weight: 500;
+	color: #74788d;
+	border-top: 0;
+	border-bottom: 1px solid #ebedf2;
+	padding: 10px 10px 10px 0;
+	background-color: transparent;
+}
+
+.kt-invoice-2 .kt-invoice__footer .table th:last-child {
+	padding-right: 0;
+}
+
+.kt-invoice-2 .kt-invoice__footer .table td {
+	font-size: 1.1rem;
+	text-transform: capitalize;
+	background-color: transparent;
+	font-weight: 500;
+	color: #595d6e;
+	padding: 10px 10px 10px 0;
+}
+
+.kt-invoice-2 .kt-invoice__footer .table td:last-child {
+	padding-right: 0;
+}
+
+.kt-invoice-2 .kt-invoice__actions {
+	padding: 2rem 0;
+}
+
+.kt-invoice-2 .kt-invoice__actions .kt-invoice__container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+@media ( min-width :1025px) {
+	.kt-invoice-2 .kt-invoice__container {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+@media ( max-width :768px) {
+	.kt-invoice-2 .kt-invoice__container {
+		width: 100%;
+		margin: 0;
+		padding: 0 20px;
+	}
+	.kt-invoice-2 .kt-invoice__head {
+		padding: 20px 0;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__brand {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__title {
+		font-weight: 700;
+		font-size: 2rem;
+		margin-bottom: 30px;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo {
+		text-align: left;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo img
+		{
+		text-align: left;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo .kt-invoice__desc
+		{
+		text-align: left;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__items {
+		margin-top: 20px;
+	}
+	.kt-invoice-2 .kt-invoice__body {
+		padding: 2rem 0;
+	}
+	.kt-invoice-2 .kt-invoice__footer {
+		padding: 2rem 0;
+	}
+}
+
+@media print {
+	.kt-aside, .kt-demo-panel, .kt-footer, .kt-header, .kt-header-mobile,
+		.kt-quick-panel, .kt-scrolltop, .kt-sticky-toolbar, .kt-subheader {
+		display: none !important;
+	}
+	.left-sidebar, footer, header {
+		display: none;
+	}
+	.page-wrapper {
+		margin-left: 0 !important;
+		padding-top: 0 !important;
+	}
+	.card-body {
+		padding: 0 !important;
+	}
+	.kt-body, .kt-content, .kt-wrapper, body {
+		background: 0 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	.kt-invoice-2 {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.kt-invoice-2 .kt-invoice__head {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.kt-invoice-2 .kt-invoice__head .kt-invoice__container {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.kt-invoice-2 .kt-invoice__actions {
+		display: none !important;
+	}
+	.kt-invoice-2 .kt-invoice__footer {
+		background-color: transparent !important;
+	}
+	.kt-invoice-2 .kt-invoice__container {
+		width: 100%;
+		padding: 0 10px;
+	}
+}
+
+

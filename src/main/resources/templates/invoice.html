@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--meta tags inclusion-->
+<th:block th:insert="footer.html :: head/meta"></th:block>
+
+<title>Reservation Invoice – Hotelmart</title>
+
+<!--CSS INCLUSION-->
+<th:block th:insert="footer.html :: head/link"></th:block>
+</head>
+
+<body>
+	<!--preloader fragment-->
+	<div th:replace="footer.html :: preloader-frag"></div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-theme="light" data-layout="vertical"
+		data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed"
+		data-boxed-layout="full">
+
+		<!-- header inclusion -->
+		<div th:replace="header.html :: header-frag"></div>
+
+
+		<!-- sidebar inclusion -->
+		<div th:replace="sidebar.html :: sidebar('reservations','null')"></div>
+
+
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="kt-invoice-2">
+
+									<div class="kt-invoice__head">
+										<div class="kt-invoice__container">
+											<div class="kt-invoice__brand">
+												<h1 class="kt-invoice__title">INVOICE</h1>
+
+												<div href="#" class="kt-invoice__logo">
+													<a href="#"> <img
+														th:src="@{/assets/images/hotelmart.png}">
+													</a> <span class="kt-invoice__desc"> <span>Quartier
+															Elig-essono, Yaoundé - Cameroun</span> <span>info@leparvis.com,
+															+237 658 71 48 11</span>
+													</span>
+												</div>
+											</div>
+
+											<div class="kt-invoice__items">
+												<div class="kt-invoice__item">
+													<span class="kt-invoice__subtitle">DATE</span> <span
+														style="text-transform: capitalize;"
+														class="kt-invoice__text" th:text="${current}"></span>
+												</div>
+												<div class="kt-invoice__item">
+													<span class="kt-invoice__subtitle">INVOICE NO.</span> <span
+														class="kt-invoice__text"
+														th:text=" 'GS 0000'+ ${reservation.id}"></span>
+												</div>
+												<div class="kt-invoice__item">
+													<span class="kt-invoice__subtitle">INVOICE TO.</span> <span
+														style="text-transform: uppercase;"
+														class="kt-invoice__text"
+														th:utext="${reservation.customer.firstName + ' ' + reservation.customer.lastName}">
+													</span> <span class="kt-invoice__text"
+														th:utext="${reservation.customer.email}"> </span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="kt-invoice__body">
+										<div class="kt-invoice__container">
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th>DESCRIPTION</th>
+															<th>QUANTITY</th>
+															<th>RATE</th>
+															<th>AMOUNT</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="room : ${reservation.rooms}">
+															<td th:utext="${room.roomNo + '-' + room.type.label}" />
+															<td th:utext="${days + ' days'}" />
+															<td
+																th:utext="${#numbers.formatDecimal(room.type.rate, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+															<td class="kt-font-danger kt-font-lg"
+																th:utext="${#numbers.formatDecimal(room.type.rate*days, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+
+														<tr th:each="charge : ${reservation.charges}">
+															<td th:utext="${charge.service.label}" />
+															<td th:utext="${charge.quantity}" />
+															<td
+																th:utext="${#numbers.formatDecimal(charge.price, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+															<td class="kt-font-danger kt-font-lg"
+																th:utext="${#numbers.formatDecimal(charge.price*charge.quantity, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+														<tr>
+															<td colspan="3" class="bold">ROOM SUBTOTAL</td>
+															<td class="kt-font-danger bold"
+																th:text="${#numbers.formatDecimal(reservation.rate_fee, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+														<tr>
+															<td colspan="3" class="bold">CHARGE SUBTOTAL</td>
+															<td class="kt-font-danger bold"
+																th:text="${#numbers.formatDecimal(charge_sub, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+
+														<tr>
+															<td colspan="3" class="bold">GUARANTEE DEPOSIT(REFUND)</td>
+															<td class="kt-font-danger bold"
+																th:text="${'-'+#numbers.formatDecimal(reservation.deposit, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="kt-invoice__footer">
+										<div class="kt-invoice__container">
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th>STAY</th>
+															<th>CODE</th>
+															<th>DUE DATE</th>
+															<th>TOTAL AMOUNT DUE</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td
+																th:utext="${#dates.format(reservation.arrival, 'MMM dd, yyyy')} + ' - ' + ${#dates.format(reservation.departure, 'MMM dd, yyyy')}"></td>
+															<td th:text="${reservation.code}" />
+															<td th:text="${due}" />
+															<td class="kt-font-danger kt-font-xl kt-font-boldest"
+																th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')+ ' XAF'}" />
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="kt-invoice__actions">
+										<div class="kt-invoice__container">
+
+											<th:block th:if="${total > 0}">
+												<th:block th:if="${reservation.payment == null}">
+													<a th:href="@{/web/payments/add(id=${reservation.id})}"
+														class="btn btn-primary">Save Payment</a>
+												</th:block>
+
+												<th:block th:unless="${reservation.payment == null}">
+													<a th:href="@{/web/payments/list(id=${reservation.id})}"
+														class="btn btn-primary">View Payment</a>
+												</th:block>
+											</th:block>
+
+
+											<button type="button"
+												class="btn btn-brand btn-bold btn-primary"
+												onclick="window.print();">Print Invoice</button>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+
+			<!--Footer fragment inclusion-->
+			<div th:replace="footer.html :: footer-frag"></div>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+
+	<th:block th:insert="footer.html :: body/script"></th:block>
+</body>
+
+</html>

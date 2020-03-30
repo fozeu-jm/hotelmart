@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" th:href="@{/assets/images/favicon.png}">
+        <link rel="stylesheet" th:href="@{/assets/c3/c3.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/chartist/chartist.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/jvector/jquery-jvectormap-2.0.2.css}">
+        
+<!--        <link rel="stylesheet" th:href="@{/assets/css/dataTables.bootstrap4.css}">-->
+        
+
+<!--        <link rel="stylesheet" th:href="@{/assets/css/datatables.css}">-->
+        <link rel="stylesheet" th:href="@{/assets/css/dataTables.bootstrap4.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/buttons.dataTables.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/bootstrap-datetimepicker.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/select2.min.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/custom.css}">
+        
+    </head>
+    <body>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader" th:fragment="preloader-frag">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+
+
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center text-muted" th:fragment="footer-frag">
+            Designed and Developed by <a href="https://kaizerwebdesign.com" target="_blank">
+                <span style="color: black; font-weight: bold;">Kaizer</span><span style="color: red; font-weight: bold;">Web</span><span style="color: black; font-weight: bold;">Design</span>
+            </a>
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script th:src="@{/assets/js/jquery.min.js}"></script>
+        <script th:src="@{/assets/js/popper.min.js}"></script>
+        <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+        <script th:src="@{/assets/js/app-style-switcher.js}"></script>
+        <script th:src="@{/assets/js/feather.min.js}"></script>
+        <script th:src="@{/assets/js/perfect-scrollbar.jquery.min.js}"></script>
+        <script th:src="@{/assets/js/sparkline.js}"></script>
+        <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+
+        <!--custom javascript-->
+        <script th:src="@{/assets/js/custom.min.js}"></script>
+
+        <!--This page JavaScript -->
+        <script th:src="@{/assets/c3/d3.min.js}"></script>
+        <script th:src="@{/assets/c3/c3.min.js}"></script>
+        <script th:src="@{/assets/js/select2.min.js}"></script>
+        <!--        <script th:src="@{/assets/chartist/chartist.min.js}"></script>
+                <script th:src="@{/assets/chartist/chartist-plugin-tooltip.min.js}"></script>-->
+        <script th:src="@{/assets/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+        <script th:src="@{/assets/jvector/jquery-jvectormap-world-mill-en.js}"></script>
+        
+        <script th:src="@{/assets/js/bootstrap-datetimepicker.min.js}"></script>
+        <script th:src="@{/assets/js/datatables.js}"></script>
+        <script th:src="@{/assets/js/dataTables.bootstrap4.min_1.js}"></script>
+        <script th:src="@{/assets/js/datatable-basic.init.js}"></script>
+       
+    </body>
+</html>
